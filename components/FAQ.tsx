@@ -1,39 +1,93 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Minus } from 'lucide-react';
+
+const faqData = [
+  {
+    q: "Is the energy assessment really free?",
+    a: "Yes. Our founding member offer includes a 100% free end-to-end audit. Our engineers will visit your property, analyze your roof structure, and review your current bills with zero obligation to proceed."
+  },
+  {
+    q: "How much can I actually save on KPLC bills?",
+    a: "Most of our residential clients in Nairobi see a reduction of 70% to 90% in their monthly electricity costs. The exact amount depends on your battery storage capacity and daytime energy usage."
+  },
+  {
+    q: "What happens if there's no sun for a few days?",
+    a: "Our systems are designed for Kenya's climate. We include premium battery storage that keeps your essential appliances (lights, fridge, Wi-Fi, security) running even during cloudy spells or KPLC blackouts."
+  },
+  {
+    q: "Do you offer any warranties?",
+    a: "Absolutely. We only use Tier-1 components. Our panels come with a 25-year performance warranty, and our inverters typically have a 5-10 year warranty, backed by our local maintenance team."
+  },
+  {
+    q: "What is a 'Founding Slot'?",
+    a: "Since we are scaling carefully to maintain quality, we only take on 20 new clients per month. Reserving a slot locks in current pricing and ensures you are first in line for installation."
+  }
+];
 
 export const FAQ: React.FC = () => {
-  const faqs = [
-    {
-      q: "Is this really free?",
-      a: "Yes. The assessment and proposal are 100% free. You only pay if you decide to proceed with the installation."
-    },
-    {
-      q: "Do I have to install?",
-      a: "No. You decide after seeing the proposal. If it doesn't make sense for you, you can simply decline. No pressure."
-    },
-    {
-      q: "When do I pay?",
-      a: "You only pay after you approve the system design, pricing, and timeline. We believe in transparency first."
-    },
-    {
-      q: "Where do you operate?",
-      a: "Currently, we serve limited areas in Nairobi and its outskirts on a first-come, first-served basis to ensure quality."
-    }
-  ];
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-charcoal border-t border-white/5">
+    <section className="py-32 bg-charcoal border-t border-white/5">
       <div className="container mx-auto px-6 max-w-3xl">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div key={index} className="bg-white/5 border border-white/5 rounded-xl p-6 hover:bg-white/10 transition-colors">
-              <h3 className="text-lg font-bold text-white mb-2 flex items-start gap-3">
-                <span className="text-gold">Q:</span>
-                {faq.q}
-              </h3>
-              <p className="text-gray-400 ml-7 leading-relaxed">{faq.a}</p>
-            </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Common Questions</h2>
+          <p className="text-gray-500">Everything you need to know about switching to Solar Gear.</p>
+        </motion.div>
+
+        <div className="space-y-4">
+          {faqData.map((faq, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="border border-white/10 rounded-2xl overflow-hidden bg-white/5"
+            >
+              <button 
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                className="w-full p-6 text-left flex justify-between items-center gap-4 hover:bg-white/5 transition-colors"
+              >
+                <span className="text-lg font-bold text-white">{faq.q}</span>
+                <div className="text-gold shrink-0">
+                  {activeIndex === index ? <Minus size={20} /> : <Plus size={20} />}
+                </div>
+              </button>
+              
+              <AnimatePresence>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="px-6 pb-6 text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-gray-500 mb-4">Still have questions?</p>
+          <a 
+            href="https://wa.me/254722371250" 
+            className="text-gold font-bold hover:underline underline-offset-4"
+          >
+            Chat with an engineer on WhatsApp →
+          </a>
         </div>
       </div>
     </section>
