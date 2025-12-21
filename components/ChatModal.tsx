@@ -10,7 +10,7 @@ interface ChatModalProps {
 
 export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Hello. I am the Senior Engineer for Solar Gear. How can I help you secure your home’s energy today?' }
+    { role: 'model', text: 'Jambo! I am the Lead Engineer here. Ready to lock in your energy independence? Ask me anything about solar, or let’s get your Solar Readiness Assessment (Worth KES 5,000) scheduled for free.' }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,8 +36,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
       const responseText = await sendMessageToGemini(userText);
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
     } catch (error) {
-        // Error handling is largely done in service, but just in case
-        setMessages(prev => [...prev, { role: 'model', text: "Connection interrupted. Please try again.", isError: true }]);
+        setMessages(prev => [...prev, { role: 'model', text: "Connection interrupted. Please try again or WhatsApp us.", isError: true }]);
     } finally {
       setIsLoading(false);
     }
@@ -62,10 +61,10 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
                 <Bot size={20} />
             </div>
             <div>
-                <h3 className="text-white font-bold text-sm">Senior Engineer</h3>
+                <h3 className="text-white font-bold text-sm">Lead Solar Engineer</h3>
                 <p className="text-xs text-green-500 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                    Online
+                    Online & Ready
                 </p>
             </div>
           </div>
@@ -92,8 +91,12 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
           {isLoading && (
              <div className="flex justify-start">
                <div className="bg-white/5 p-3 rounded-lg flex gap-2 items-center">
-                 <Loader2 size={16} className="text-gray-400 animate-spin" />
-                 <span className="text-xs text-gray-500">Thinking...</span>
+                 <div className="flex gap-1">
+                    <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                 </div>
+                 <span className="text-xs text-gray-500 italic">Engineer is typing...</span>
                </div>
              </div>
           )}
@@ -108,7 +111,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask about the Residence Core..." 
+              placeholder="Ask about your free KES 5,000 assessment..." 
               className="flex-1 bg-[#111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm"
               autoFocus
             />
