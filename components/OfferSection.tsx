@@ -6,7 +6,7 @@ export const OfferSection: React.FC = () => {
   const perks = [
     { icon: <Rocket size={32} />, title: "Special Early Pricing", desc: "Locked-in founding rates", color: "text-red-500", bg: "bg-red-500/10" },
     { icon: <Zap size={32} />, title: "Priority Installation", desc: "Skip the standard waitlist", color: "text-yellow-500", bg: "bg-yellow-500/10" },
-    { icon: <Brain size={32} />, title: "Free Energy Audit", desc: "Professional usage analysis", color: "text-blue-500", bg: "bg-blue-500/10" },
+    { icon: <Brain size={32} />, title: "Solar Readiness Assessment", desc: "Professional Audit (Worth KES 5,000)", color: "text-blue-500", bg: "bg-blue-500/10" },
     { icon: <Shield size={32} />, title: "Extended Care", desc: "Bonus 2-year maintenance", color: "text-green-500", bg: "bg-green-500/10" },
   ];
 
@@ -25,9 +25,9 @@ export const OfferSection: React.FC = () => {
           </div>
           
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Founding Offer 🚀</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Exclusive Founding Offer 🚀</h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
-              We're building a community of energy-independent homeowners in Kenya. Join the first group for exclusive benefits.
+              We're building a community of energy-independent homeowners in Nairobi. Join the first group for high-value benefits.
             </p>
           </div>
 
@@ -44,7 +44,7 @@ export const OfferSection: React.FC = () => {
                 <div className={`w-20 h-20 mx-auto ${perk.bg} ${perk.color} rounded-[2rem] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
                   {perk.icon}
                 </div>
-                <h3 className="text-white font-bold text-xl mb-2">{perk.title}</h3>
+                <h3 className="text-white font-bold text-xl mb-2 leading-tight">{perk.title}</h3>
                 <p className="text-sm text-gray-500 font-medium">{perk.desc}</p>
               </motion.div>
             ))}
@@ -66,7 +66,7 @@ export const OfferSection: React.FC = () => {
 
             {[
               { step: "1", title: "Reserve Spot", desc: "Zero commitment. Fill the form to lock your founding price." },
-              { step: "2", title: "Free Audit", desc: "Our engineers visit to analyze your specific roof and energy needs." },
+              { step: "2", title: "Readiness Assessment", desc: "Worth KES 5,000. Our engineers visit to analyze roof, load & backup needs." },
               { step: "3", title: "You Decide", desc: "If the ROI doesn't make sense, walk away. No hard feelings." }
             ].map((item, i) => (
               <motion.div 

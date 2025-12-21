@@ -1,20 +1,19 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 
 const faqData = [
   {
-    q: "Is the energy assessment really free?",
-    a: "Yes. Our founding member offer includes a 100% free end-to-end audit. Our engineers will visit your property, analyze your roof structure, and review your current bills with zero obligation to proceed."
+    q: "Is the Solar Readiness Assessment really free?",
+    a: "Yes. Our founding member offer includes the Solar Readiness Assessment (normally KES 5,000) for free. Our engineers will visit your property, analyze your roof structure, evaluate backup needs, and review your bills with zero obligation to proceed."
+  },
+  {
+    q: "What outcomes do I get from the assessment?",
+    a: "You'll receive: 1. Your exact required system size. 2. A total estimated cost including installation. 3. A backup coverage analysis showing how long your home stays powered during blackouts. 4. A clear next-steps roadmap."
   },
   {
     q: "How much can I actually save on KPLC bills?",
-    a: "Most of our residential clients in Nairobi see a reduction of 70% to 90% in their monthly electricity costs. The exact amount depends on your battery storage capacity and daytime energy usage."
-  },
-  {
-    q: "What happens if there's no sun for a few days?",
-    a: "Our systems are designed for Kenya's climate. We include premium battery storage that keeps your essential appliances (lights, fridge, Wi-Fi, security) running even during cloudy spells or KPLC blackouts."
+    a: "Most of our residential clients in Nairobi see a reduction of 70% to 90% in their monthly electricity costs. The exact amount depends on your battery storage capacity and daytime energy usage, which we calculate during the assessment."
   },
   {
     q: "Do you offer any warranties?",
@@ -22,7 +21,7 @@ const faqData = [
   },
   {
     q: "What is a 'Founding Slot'?",
-    a: "Since we are scaling carefully to maintain quality, we only take on 20 new clients per month. Reserving a slot locks in current pricing and ensures you are first in line for installation."
+    a: "Since we are scaling carefully to maintain quality, we only take on 20 new clients per month. Reserving a slot locks in current pricing and ensures you get your KES 5,000 assessment for free."
   }
 ];
 

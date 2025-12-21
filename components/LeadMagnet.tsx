@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Loader2, CheckCircle2, MessageCircle, AlertCircle } from 'lucide-react';
+import { Send, Loader2, CheckCircle2, MessageCircle, AlertCircle, TrendingUp } from 'lucide-react';
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrezgbrp';
 
@@ -50,35 +50,43 @@ export const LeadMagnet: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-                Join our first <span className="text-gold underline underline-offset-8 decoration-gold/30">Founding Cohort</span> 🚀
+              <div className="inline-block px-4 py-1 mb-6 border border-gold/40 rounded-full bg-gold/10 backdrop-blur-md">
+                <span className="text-gold text-xs font-bold uppercase tracking-widest">Nairobi Early Access</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Claim Your <span className="text-gold">Solar Readiness Assessment</span> 🚀
               </h2>
-              <p className="text-gray-400 text-xl mb-10 leading-relaxed max-w-lg">
-                We are onboarding a limited number of early adopters in Nairobi to validate our premium service. Reserve your spot today.
+              <div className="inline-flex items-center gap-3 bg-gold/20 text-gold px-5 py-2 rounded-lg font-bold text-lg md:text-xl mb-8 border border-gold/30">
+                <TrendingUp size={20} />
+                Worth KES 5,000 – Free for a Limited Time
+              </div>
+              
+              <p className="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg">
+                Stop guessing. Get a professional engineer-led audit of your property and current bills. No strings attached.
               </p>
               
-              <ul className="space-y-6 mb-8">
-                {[
-                  "Locked-in Founding Customer pricing",
-                  "Free end-to-end energy assessment",
-                  "Priority installation & 24/7 support",
-                  "No commitment required today"
-                ].map((item, i) => (
-                  <motion.li 
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-4 text-gray-200"
-                  >
-                    <div className="bg-gold/10 p-1 rounded-full">
-                      <CheckCircle2 className="text-gold" size={20} />
-                    </div>
-                    <span className="text-lg">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8 shadow-inner">
+                <h4 className="text-white font-bold text-xl mb-6 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gold text-charcoal flex items-center justify-center text-sm font-black">?</div>
+                  Assessment Outcomes:
+                </h4>
+                <ul className="space-y-4">
+                  {[
+                    { label: "Exact system size", sub: "Based on your actual consumption" },
+                    { label: "Estimated cost", sub: "Complete hardware & labor breakdown" },
+                    { label: "Backup coverage", sub: "Know exactly how long you stay powered" },
+                    { label: "Clear next steps", sub: "A roadmap to energy independence" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <CheckCircle2 className="text-gold shrink-0 mt-1" size={20} />
+                      <div>
+                        <span className="text-white font-bold block">{item.label}</span>
+                        <span className="text-gray-500 text-sm">{item.sub}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           </div>
 
@@ -102,20 +110,20 @@ export const LeadMagnet: React.FC = () => {
                     </div>
                     <h3 className="text-white font-bold text-3xl mb-4">Spot Reserved!</h3>
                     <p className="text-gray-400 mb-8 leading-relaxed">
-                      Thank you for trusting Solar Gear. We've received your details and will WhatsApp you within 24 hours to schedule your free assessment.
+                      Your KES 5,000 Solar Readiness Assessment is now reserved. Our team will WhatsApp you within 24 hours to schedule the visit.
                     </p>
                     <button 
                       onClick={() => setStatus('idle')} 
                       className="px-8 py-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all"
                     >
-                      Register another home
+                      Assess another home
                     </button>
                   </motion.div>
                 ) : (
                   <motion.div key="form" className="flex flex-col gap-8">
-                    <div className="space-y-2">
-                      <h3 className="text-2xl font-bold text-white">Start Your Transition</h3>
-                      <p className="text-sm text-gray-500">Fill this out to lock your pricing.</p>
+                    <div className="space-y-2 text-center md:text-left">
+                      <h3 className="text-2xl font-bold text-white">Reserve My Slot Now</h3>
+                      <p className="text-sm text-gray-500 font-medium italic">Save KES 5,000 Today.</p>
                     </div>
                     
                     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -124,10 +132,10 @@ export const LeadMagnet: React.FC = () => {
                         <input 
                           type="text" 
                           name="name"
-                          placeholder="John Doe" 
+                          placeholder="Your Name" 
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/50 transition-all"
+                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold transition-all"
                           required
                         />
                       </div>
@@ -140,20 +148,16 @@ export const LeadMagnet: React.FC = () => {
                           placeholder="07XX XXX XXX" 
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/50 transition-all"
+                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold transition-all"
                           required
                         />
                       </div>
 
                       {status === 'error' && (
-                        <motion.div 
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="flex items-center gap-3 text-red-400 text-sm bg-red-400/5 p-4 rounded-xl border border-red-400/10"
-                        >
+                        <div className="flex items-center gap-3 text-red-400 text-sm bg-red-400/5 p-4 rounded-xl border border-red-400/10">
                           <AlertCircle size={18} />
-                          <span>Something went wrong. Try WhatsApp?</span>
-                        </motion.div>
+                          <span>Submission failed. Use WhatsApp instead.</span>
+                        </div>
                       )}
 
                       <motion.button 
@@ -163,23 +167,23 @@ export const LeadMagnet: React.FC = () => {
                         type="submit" 
                         className="bg-gold hover:bg-gold-light text-charcoal font-black text-lg py-5 rounded-xl transition-all shadow-lg shadow-gold/20 flex items-center justify-center gap-3"
                       >
-                        {status === 'loading' ? <Loader2 className="animate-spin" /> : <>Reserve My Solar Slot <Send size={20} /></>}
+                        {status === 'loading' ? <Loader2 className="animate-spin" /> : <>Claim Free Assessment <Send size={20} /></>}
                       </motion.button>
                     </form>
 
                     <div className="relative">
                       <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10"></div></div>
-                      <div className="relative flex justify-center text-xs uppercase"><span className="bg-charcoal px-4 text-gray-500 font-bold tracking-widest">or reach out directly</span></div>
+                      <div className="relative flex justify-center text-xs uppercase"><span className="bg-charcoal px-4 text-gray-500 font-bold tracking-widest">or</span></div>
                     </div>
 
                     <a 
-                      href="https://wa.me/254722371250?text=Hi%2C%20I'm%20interested%20in%20the%20Founding%20Customer%20Solar%20Offer."
+                      href="https://wa.me/254722371250?text=Hi%2C%20I'm%20interested%20in%20the%20Free%20Solar%20Readiness%20Assessment%20worth%20KES%205000."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#25D366] hover:bg-[#1ebc57] text-white font-bold text-lg py-5 rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-500/10"
+                      className="bg-[#25D366] hover:bg-[#1ebc57] text-white font-bold text-lg py-5 rounded-xl transition-all flex items-center justify-center gap-3"
                     >
                       <MessageCircle size={22} />
-                      WhatsApp Us Now
+                      WhatsApp Our Engineer
                     </a>
                   </motion.div>
                 )}
